@@ -1,1 +1,1 @@
-console.log("hi");
+// create a questions array
