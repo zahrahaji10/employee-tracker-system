@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/zahrahaji10/employee-tracker-system/issues"
   },
-  "homepage": "https://github.com/zahrahaji10/employee-tracker-system#readme"
+  "homepage": "https://github.com/zahrahaji10/employee-tracker-system#readme",
+  "dependencies": {
+    "inquirer": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.18"
+  }
 }
