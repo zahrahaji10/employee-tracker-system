@@ -49,3 +49,68 @@ const choiceQuestions = {
     },
   ],
 };
+
+const departmentQuestions = {
+  message: "Please enter a department name",
+  type: "input",
+  name: "departmentName",
+  validate: (enteredDepartmentName) => {
+    if (enteredDepartmentName) {
+      return true;
+    } else {
+      return "Please enter a department name to continue";
+    }
+  },
+};
+
+const roleQuestions = [
+  {
+    message: "Please enter the title for the role",
+    type: "input",
+    name: "roleTitle",
+    validate: (enteredTitle) => {
+      if (enteredTitle) {
+        return true;
+      } else {
+        return "Please enter the role title to continue";
+      }
+    },
+  },
+  {
+    message: "Please enter the salary for this role",
+    type: "input",
+    name: "roleSalary",
+    validate: (enteredSalary) => {
+      if (enteredSalary) {
+        return true;
+      } else {
+        return "Please enter the role salary to continue";
+      }
+    },
+  },
+  {
+    message: "Please select the department this role belongs to",
+    type: "list",
+    name: "addDepartmentRole",
+    choice: [
+      {
+        name: "Finance",
+        value: "getFinanceDb",
+        short: "Finance",
+      },
+      {
+        name: "Marketing",
+        value: "getMarketingDb",
+        short: "Marketing",
+      },
+    ],
+  },
+];
+
+// loop through array questions
+
+// create the database using mysql
+
+// create a connection with the database
+
+// take responses form inquirer and store in database
