@@ -96,12 +96,173 @@ const roleQuestions = [
       {
         name: "Finance",
         value: "getFinanceDb",
-        short: "Finance",
+        short: "finance",
       },
       {
         name: "Marketing",
         value: "getMarketingDb",
-        short: "Marketing",
+        short: "marketing",
+      },
+      {
+        name: "Software Developer",
+        value: "getDeveloperDb",
+        short: "developer",
+      },
+      {
+        name: "Product Production",
+        value: "getProductionDb",
+        short: "productProduction",
+      },
+    ],
+  },
+];
+
+const employeeQuestions = [
+  {
+    message: "Please enter employee first name",
+    type: "input",
+    name: "employeeName",
+    validate: (enteredName) => {
+      if (enteredName) {
+        return true;
+      } else {
+        return "Please enter the employee first name to continue";
+      }
+    },
+  },
+  {
+    message: "Please enter employee last name",
+    type: "input",
+    name: "employeeName",
+    validate: (enteredName) => {
+      if (enteredName) {
+        return true;
+      } else {
+        return "Please enter the employee last name to continue";
+      }
+    },
+  },
+  {
+    message: "Please select the role the employee belongs to",
+    type: "list",
+    name: "employeeRole",
+    choice: [
+      {
+        name: "Senior Developer",
+        value: "getDeveloperDb",
+        short: "developer",
+      },
+      {
+        name: " Junior Developer",
+        value: "getDeveloperDb",
+        short: "developer",
+      },
+      {
+        name: " Accountant",
+        value: "getFinanceDb",
+        short: "finance",
+      },
+      {
+        name: "Marketing Manager",
+        value: "getMarketingDb",
+        short: "marketing",
+      },
+      {
+        name: "Production Manager",
+        value: "getProductionDb",
+        short: "production",
+      },
+      {
+        name: "researcher",
+        value: "getProductionDb",
+        short: "production",
+      },
+    ],
+  },
+  {
+    message: "Please select the employee's manager",
+    type: "list",
+    name: "employeeManager",
+    choice: [
+      {
+        name: "Sam Smith",
+        value: "getEmployeeDb",
+        short: "employeeManager",
+      },
+      {
+        name: "Sarah Lee",
+        value: "getEmployeeDb",
+        short: "employeeManager",
+      },
+      ,
+      {
+        name: "John Smith",
+        value: "getEmployeeDb",
+        short: "employeeManager",
+      },
+    ],
+  },
+];
+
+const update = [
+  {
+    message: " Please select the employee you would like to update",
+    type: "list",
+    name: "employeeToUpdate",
+    choices: [
+      {
+        name: "Sam Smith",
+        value: "getEmployeeDb",
+        short: "employeeManager",
+      },
+      {
+        name: "Sarah Lee",
+        value: "getEmployeeDb",
+        short: "employeeManager",
+      },
+      ,
+      {
+        name: "John Smith",
+        value: "getEmployeeDb",
+        short: "employeeManager",
+      },
+    ],
+  },
+  {
+    message:
+      " Please select the role you would like to update for the employee",
+    type: "list",
+    name: "updateToRole",
+    choices: [
+      {
+        name: "Senior Developer",
+        value: "getDeveloperDb",
+        short: "developer",
+      },
+      {
+        name: " Junior Developer",
+        value: "getDeveloperDb",
+        short: "developer",
+      },
+      {
+        name: " Accountant",
+        value: "getFinanceDb",
+        short: "finance",
+      },
+      {
+        name: "Marketing Manager",
+        value: "getMarketingDb",
+        short: "marketing",
+      },
+      {
+        name: "Production Manager",
+        value: "getProductionDb",
+        short: "production",
+      },
+      {
+        name: "researcher",
+        value: "getProductionDb",
+        short: "production",
       },
     ],
   },
