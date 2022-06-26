@@ -6,7 +6,7 @@ const inquirer = require("inquirer");
 const choiceQuestions = {
   message: "Please select from one of the following options",
   type: "list",
-  name: "choiceQuestions",
+  name: "choice",
   choices: [
     {
       name: "View all departments",
