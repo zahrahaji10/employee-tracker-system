@@ -21,7 +21,6 @@ const init = async () => {
   while (inProgress) {
     // prompt choice questions
     const { action } = await inquirer.prompt(choiceQuestions);
-    console.log(action);
 
     // prompt add department questions
     if (action === "addDepartment") {
