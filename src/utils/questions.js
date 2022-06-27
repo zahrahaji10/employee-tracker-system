@@ -1,58 +1,56 @@
+// - plan:-
+//   - add actions (department, role, employee) - prompt Q's and INSERT into database
+//   - view actions (department, role, employee)  - display from database
+//   - update an employee role ( )  - Amend data from database from selected employee
+//   - quit - write to file html file and display info.
+
 // import inquirer into file
 const inquirer = require("inquirer");
 
-// create a questions array using inquirer
-
+// main choice questions prompted via inquirer
 const choiceQuestions = {
   message: "Please select from one of the following options",
   type: "list",
-  name: "choice",
+  name: "action",
   choices: [
     {
       name: "View all departments",
       value: "viewDepartments",
-      short: "departments",
     },
     {
       name: "View all roles",
       value: "viewRoles",
-      short: "roles",
     },
     {
       name: "View all employees",
       value: "viewEmployees",
-      short: "employees",
     },
     {
       name: "Add a department",
       value: "addDepartment",
-      short: "newDepartment",
     },
     ,
     {
       name: "Add a role",
       value: "addRole",
-      short: "newRole",
     },
     {
       name: "Add an employee",
       value: "addEmployee",
-      short: "newEmployee",
     },
     ,
     {
       name: "Update an employee role",
-      value: "updateRole",
-      short: "update",
+      value: "update",
     },
     {
       name: "Quit application",
       value: "quit",
-      short: "quit",
     },
   ],
 };
 
+// add new department questions
 const departmentQuestions = {
   message: "Please enter a department name",
   type: "input",
@@ -66,11 +64,12 @@ const departmentQuestions = {
   },
 };
 
+// add new role questions
 const roleQuestions = [
   {
     message: "Please enter the title for the role",
     type: "input",
-    name: "roleTitle",
+    name: "addRoleTitle",
     validate: (enteredTitle) => {
       if (enteredTitle) {
         return true;
@@ -82,7 +81,7 @@ const roleQuestions = [
   {
     message: "Please enter the salary for this role",
     type: "input",
-    name: "roleSalary",
+    name: "addRoleSalary",
     validate: (enteredSalary) => {
       if (enteredSalary) {
         return true;
@@ -94,37 +93,35 @@ const roleQuestions = [
   {
     message: "Please select the department this role belongs to",
     type: "list",
-    name: "addDepartmentRole",
-    choice: [
+    name: "selectDepartmentForRole",
+    // SELECT * DATA FROM DEPARTMENT TABLE
+    choices: [
       {
         name: "Finance",
         value: "getFinanceDb",
-        short: "finance",
       },
       {
         name: "Marketing",
         value: "getMarketingDb",
-        short: "marketing",
       },
       {
         name: "Software Developer",
         value: "getDeveloperDb",
-        short: "developer",
       },
       {
         name: "Product Production",
         value: "getProductionDb",
-        short: "productProduction",
       },
     ],
   },
 ];
 
+// add new employee questions
 const employeeQuestions = [
   {
     message: "Please enter employee first name",
     type: "input",
-    name: "employeeName",
+    name: "addEmployeeName",
     validate: (enteredName) => {
       if (enteredName) {
         return true;
@@ -136,7 +133,7 @@ const employeeQuestions = [
   {
     message: "Please enter employee last name",
     type: "input",
-    name: "employeeName",
+    name: "addEmployeeName",
     validate: (enteredName) => {
       if (enteredName) {
         return true;
@@ -148,8 +145,9 @@ const employeeQuestions = [
   {
     message: "Please select the role the employee belongs to",
     type: "list",
-    name: "employeeRole",
-    choice: [
+    name: "selectRoleForEmployee",
+    // SELECT * ALL ROLES IN DATABASE
+    choices: [
       {
         name: "Senior Developer",
         value: "getDeveloperDb",
@@ -185,49 +183,46 @@ const employeeQuestions = [
   {
     message: "Please select the employee's manager",
     type: "list",
-    name: "employeeManager",
+    name: "assignManagerForEmployee",
+    // REFERENCE MANAGERS IN EMPLOYEE TABLES
     choice: [
       {
         name: "Sam Smith",
         value: "getEmployeeDb",
-        short: "employeeManager",
       },
       {
         name: "Sarah Lee",
         value: "getEmployeeDb",
-        short: "employeeManager",
       },
       ,
       {
         name: "John Smith",
         value: "getEmployeeDb",
-        short: "employeeManager",
       },
     ],
   },
 ];
 
-const update = [
+// update an employee questions
+const updateQuestions = [
   {
     message: " Please select the employee you would like to update",
     type: "list",
     name: "employeeToUpdate",
+    // SELECT * ALL EMPLOYEES FROM DATABASE
     choices: [
       {
         name: "Sam Smith",
         value: "getEmployeeDb",
-        short: "employeeManager",
       },
       {
         name: "Sarah Lee",
         value: "getEmployeeDb",
-        short: "employeeManager",
       },
       ,
       {
         name: "John Smith",
         value: "getEmployeeDb",
-        short: "employeeManager",
       },
     ],
   },
@@ -236,16 +231,15 @@ const update = [
       " Please select the role you would like to update for the employee",
     type: "list",
     name: "updateToRole",
+    // SELECT * ALL ROLES FROM DATABASE
     choices: [
       {
         name: "Senior Developer",
         value: "getDeveloperDb",
-        short: "developer",
       },
       {
         name: " Junior Developer",
         value: "getDeveloperDb",
-        short: "developer",
       },
       {
         name: " Accountant",
@@ -255,17 +249,14 @@ const update = [
       {
         name: "Marketing Manager",
         value: "getMarketingDb",
-        short: "marketing",
       },
       {
         name: "Production Manager",
         value: "getProductionDb",
-        short: "production",
       },
       {
         name: "researcher",
         value: "getProductionDb",
-        short: "production",
       },
     ],
   },
@@ -276,4 +267,5 @@ module.exports = {
   departmentQuestions,
   roleQuestions,
   employeeQuestions,
+  updateQuestions,
 };
