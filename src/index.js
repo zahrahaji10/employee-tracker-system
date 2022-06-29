@@ -10,7 +10,8 @@ const {
   employeeQuestions,
   updateQuestions,
 } = require("../src/utils/questions");
-const initDatabase = require("./utils/db");
+const initDatabase = require("../src/utils/connection");
+const { viewDepartments, viewRoles, viewEmployees } = require("../db/queries");
 
 // fn to prompt inquirer questions
 const init = async () => {
@@ -35,6 +36,7 @@ const init = async () => {
       // prompt add department questions
       if (action === "addDepartment") {
         const departmentQPrompt = await inquirer.prompt(departmentQuestions);
+
         console.log("YOU HAVE ADDED A DEPARTMENT");
       }
 
@@ -57,15 +59,14 @@ const init = async () => {
       }
 
       // prompt view departments
-      if (action === "viewDepartment") {
-        // execute query for SELECT * FROM departments table
+      if (action === "viewDepartments") {
+        await viewDepartments(executeQuery);
         console.log("CURRENT DEPARTMENTS");
       }
 
       // prompt view roles
       if (action === "viewRoles") {
-        // execute query for SELECT * FROM roles table
-        console.log("CURRENT ROLES");
+        await console.log("CURRENT ROLES");
       }
 
       // prompt view employees
@@ -84,6 +85,8 @@ const init = async () => {
 
       // end looping of questions
       if (action === "quit") {
+        // close connection to quit application
+        await db.end();
         // set inProgress false to quit questions looping
         inProgress = false;
         console.log("YOU HAVE CHOSEN TO QUIT APPLICATION");
@@ -96,8 +99,3 @@ const init = async () => {
 
 // call function to initialize
 init();
-// create the database using mysql
-
-// create a connection with the database
-
-// take responses form inquirer and store in database

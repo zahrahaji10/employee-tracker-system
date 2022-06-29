@@ -1,9 +1,3 @@
-// - plan:-
-//   - add actions (department, role, employee) - prompt Q's and INSERT into database
-//   - view actions (department, role, employee)  - display from database
-//   - update an employee role ( )  - Amend data from database from selected employee
-//   - quit - write to file html file and display info.
-
 // import inquirer into file
 const inquirer = require("inquirer");
 
@@ -95,24 +89,7 @@ const roleQuestions = [
     type: "list",
     name: "selectDepartmentForRole",
     // SELECT * DATA FROM DEPARTMENT TABLE
-    choices: [
-      {
-        name: "Finance",
-        value: "getFinanceDb",
-      },
-      {
-        name: "Marketing",
-        value: "getMarketingDb",
-      },
-      {
-        name: "Software Developer",
-        value: "getDeveloperDb",
-      },
-      {
-        name: "Product Production",
-        value: "getProductionDb",
-      },
-    ],
+    choices: [],
   },
 ];
 
