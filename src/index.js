@@ -1,4 +1,4 @@
-//external - import inquirer into file
+//external - imports into file
 const inquirer = require("inquirer");
 require("dotenv").config();
 
@@ -10,10 +10,19 @@ const {
   employeeQuestions,
   updateQuestions,
 } = require("../src/utils/questions");
+const initDatabase = require("./utils/db");
 
 // fn to prompt inquirer questions
 const init = async () => {
   try {
+    // connect to mysql database
+    const { executeQuery, closeConnection } = await initDatabase({
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
+    });
+
     // declare the process true to enable looping in question
     let inProgress = true;
 

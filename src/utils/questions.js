@@ -147,59 +147,14 @@ const employeeQuestions = [
     type: "list",
     name: "selectRoleForEmployee",
     // SELECT * ALL ROLES IN DATABASE
-    choices: [
-      {
-        name: "Senior Developer",
-        value: "getDeveloperDb",
-        short: "developer",
-      },
-      {
-        name: " Junior Developer",
-        value: "getDeveloperDb",
-        short: "developer",
-      },
-      {
-        name: " Accountant",
-        value: "getFinanceDb",
-        short: "finance",
-      },
-      {
-        name: "Marketing Manager",
-        value: "getMarketingDb",
-        short: "marketing",
-      },
-      {
-        name: "Production Manager",
-        value: "getProductionDb",
-        short: "production",
-      },
-      {
-        name: "researcher",
-        value: "getProductionDb",
-        short: "production",
-      },
-    ],
+    choices: [],
   },
   {
     message: "Please select the employee's manager",
     type: "list",
     name: "assignManagerForEmployee",
     // REFERENCE MANAGERS IN EMPLOYEE TABLES
-    choice: [
-      {
-        name: "Sam Smith",
-        value: "getEmployeeDb",
-      },
-      {
-        name: "Sarah Lee",
-        value: "getEmployeeDb",
-      },
-      ,
-      {
-        name: "John Smith",
-        value: "getEmployeeDb",
-      },
-    ],
+    choice: [],
   },
 ];
 
@@ -218,33 +173,7 @@ const updateQuestions = [
     type: "list",
     name: "updateToRole",
     // SELECT * ALL ROLES FROM DATABASE
-    choices: [
-      {
-        name: "Senior Developer",
-        value: "getDeveloperDb",
-      },
-      {
-        name: " Junior Developer",
-        value: "getDeveloperDb",
-      },
-      {
-        name: " Accountant",
-        value: "getFinanceDb",
-        short: "finance",
-      },
-      {
-        name: "Marketing Manager",
-        value: "getMarketingDb",
-      },
-      {
-        name: "Production Manager",
-        value: "getProductionDb",
-      },
-      {
-        name: "researcher",
-        value: "getProductionDb",
-      },
-    ],
+    choices: [],
   },
 ];
 

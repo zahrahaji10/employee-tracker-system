@@ -14,7 +14,7 @@ id INT NOT NULL AUTO_INCREMENT,
 title VARCHAR(30) NOT NULL,
 salary DECIMAL(8,2) NOT NULL ,
 departmentId INT NOT NULL,
-FOREIGN KEY (departmentId) REFERENCES department(id),
+FOREIGN KEY (departmentId) REFERENCES department(id) ON DELETE CASCADE,
 PRIMARY KEY (id)
 );
 
@@ -25,7 +25,6 @@ lastName VARCHAR(50) NOT NULL,
 roleId INT NOT NULL,
 managerId INT,
 PRIMARY KEY (id),
-FOREIGN KEY (roleId) REFERENCES role(id),
-CONSTRAINT employee_fk FOREIGN KEY (managerId)
-REFERENCES employee(id)
+FOREIGN KEY (roleId) REFERENCES role(id) ON DELETE CASCADE,
+FOREIGN KEY (managerId) REFERENCES employee(id) ON DELETE SET NULL
 );
