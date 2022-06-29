@@ -23,7 +23,7 @@ id INT NOT NULL AUTO_INCREMENT,
 firstName VARCHAR(50) NOT NULL,
 lastName VARCHAR(50) NOT NULL,
 roleId INT NOT NULL,
-managerId INT NOT NULL,
+managerId INT,
 PRIMARY KEY (id),
 FOREIGN KEY (roleId) REFERENCES role(id),
 FOREIGN KEY (managerId) REFERENCES employee(id)
