@@ -13,8 +13,8 @@ CREATE TABLE role (
 id INT NOT NULL AUTO_INCREMENT,
 title VARCHAR(30) NOT NULL,
 salary DECIMAL(8,2) NOT NULL ,
-department_id INT NOT NULL,
-FOREIGN KEY (department_id) REFERENCES department(id),
+departmentId INT NOT NULL,
+FOREIGN KEY (departmentId) REFERENCES department(id),
 PRIMARY KEY (id)
 );
 
@@ -22,9 +22,13 @@ CREATE TABLE employee (
 id INT NOT NULL AUTO_INCREMENT,
 firstName VARCHAR(50) NOT NULL,
 lastName VARCHAR(50) NOT NULL,
-role_id INT NOT NULL,
-FOREIGN KEY (role_id) REFERENCES role(id),
-PRIMARY KEY (id)
+roleId INT NOT NULL,
+managerId INT NOT NULL,
+PRIMARY KEY (id),
+FOREIGN KEY (roleId) REFERENCES role(id),
+FOREIGN KEY (managerId) REFERENCES employee(id)
 );
 
 
+
+-- npm i console.table

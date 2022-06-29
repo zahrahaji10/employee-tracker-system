@@ -69,7 +69,7 @@ const roleQuestions = [
   {
     message: "Please enter the title for the role",
     type: "input",
-    name: "addRoleTitle",
+    name: "title",
     validate: (enteredTitle) => {
       if (enteredTitle) {
         return true;
@@ -81,7 +81,7 @@ const roleQuestions = [
   {
     message: "Please enter the salary for this role",
     type: "input",
-    name: "addRoleSalary",
+    name: "salary",
     validate: (enteredSalary) => {
       if (enteredSalary) {
         return true;
@@ -121,7 +121,7 @@ const employeeQuestions = [
   {
     message: "Please enter employee first name",
     type: "input",
-    name: "addEmployeeName",
+    name: "firstName",
     validate: (enteredName) => {
       if (enteredName) {
         return true;
@@ -133,7 +133,7 @@ const employeeQuestions = [
   {
     message: "Please enter employee last name",
     type: "input",
-    name: "addEmployeeName",
+    name: "lastName",
     validate: (enteredName) => {
       if (enteredName) {
         return true;
