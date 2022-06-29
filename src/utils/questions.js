@@ -210,21 +210,7 @@ const updateQuestions = [
     type: "list",
     name: "employeeToUpdate",
     // SELECT * ALL EMPLOYEES FROM DATABASE
-    choices: [
-      {
-        name: "Sam Smith",
-        value: "getEmployeeDb",
-      },
-      {
-        name: "Sarah Lee",
-        value: "getEmployeeDb",
-      },
-      ,
-      {
-        name: "John Smith",
-        value: "getEmployeeDb",
-      },
-    ],
+    choices: [],
   },
   {
     message:
