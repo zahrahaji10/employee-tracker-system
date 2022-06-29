@@ -66,11 +66,13 @@ const init = async () => {
 
       // prompt view roles
       if (action === "viewRoles") {
+        await viewRoles(executeQuery);
         await console.log("CURRENT ROLES");
       }
 
       // prompt view employees
       if (action === "viewEmployees") {
+        await viewEmployees(executeQuery);
         console.log("CURRENT EMPLOYEES");
       }
 
@@ -86,7 +88,7 @@ const init = async () => {
       // end looping of questions
       if (action === "quit") {
         // close connection to quit application
-        await db.end();
+        await closeConnection();
         // set inProgress false to quit questions looping
         inProgress = false;
         console.log("YOU HAVE CHOSEN TO QUIT APPLICATION");

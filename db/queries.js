@@ -6,14 +6,14 @@ const viewDepartments = async (executeQuery) => {
   console.table(departments);
 };
 
-const viewRoles = async () => {
-  const roles = await db.cons;
+const viewRoles = async (executeQuery) => {
+  const roles = await executeQuery("SELECT * FROM role");
 
   console.table(roles);
 };
 
-const viewEmployees = async () => {
-  const employees = await db.cons;
+const viewEmployees = async (executeQuery) => {
+  const employees = await executeQuery("SELECT * FROM employee");
   console.table(employees);
 };
 
