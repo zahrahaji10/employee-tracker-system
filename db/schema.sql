@@ -26,9 +26,6 @@ roleId INT NOT NULL,
 managerId INT,
 PRIMARY KEY (id),
 FOREIGN KEY (roleId) REFERENCES role(id),
-FOREIGN KEY (managerId) REFERENCES employee(id)
+CONSTRAINT employee_fk FOREIGN KEY (managerId)
+REFERENCES employee(id)
 );
-
-
-
--- npm i console.table

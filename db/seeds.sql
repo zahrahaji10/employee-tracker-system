@@ -24,7 +24,7 @@ VAlUES ('Senior Developer', 56000.00, 3),
 INSERT INTO employee (firstName, lastName, roleId, managerId)
 VAlUES ('Sam', 'Smith', 3 , NULL),
 ('Sarah', 'Lee', 1 , NULL ),
-('John', 'Holland',2, NULL )
+('John', 'Holland',2, NULL ),
 ('Emma', 'Green',5, NULL ),
 ('Rob', 'Gray', 4, NULL ),
 ('Steven','Andrews', 4, 5 ),
