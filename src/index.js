@@ -11,7 +11,13 @@ const {
   updateQuestions,
 } = require("../src/utils/questions");
 const initDatabase = require("../src/utils/connection");
-const { viewDepartments, viewRoles, viewEmployees } = require("../db/queries");
+const {
+  viewDepartments,
+  viewRoles,
+  viewEmployees,
+  addDepartment,
+  addRole,
+} = require("../db/queries");
 
 // fn to prompt inquirer questions
 const init = async () => {
@@ -36,14 +42,14 @@ const init = async () => {
       // prompt add department questions
       if (action === "addDepartment") {
         const departmentQPrompt = await inquirer.prompt(departmentQuestions);
+        await addDepartment(executeQuery, departmentQPrompt);
 
         console.log("YOU HAVE ADDED A DEPARTMENT");
       }
 
       // prompt add role questions
       if (action === "addRole") {
-        const { addRoleTitle, addRoleSalary, selectDepartmentForRole } =
-          await inquirer.prompt(roleQuestions);
+        await addRole();
         console.log("YOU HAVE ADDED A ROLE");
       }
 
@@ -101,3 +107,7 @@ const init = async () => {
 
 // call function to initialize
 init();
+
+module.exports = {
+  init,
+};
