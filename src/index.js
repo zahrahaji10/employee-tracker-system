@@ -49,7 +49,7 @@ const init = async () => {
 
       // prompt add role questions
       if (action === "addRole") {
-        await addRole();
+        await addRole(executeQuery, roleQuestions);
         console.log("YOU HAVE ADDED A ROLE");
       }
 
