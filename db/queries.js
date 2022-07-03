@@ -37,7 +37,7 @@ const addDepartment = async (executeQuery, departmentQPrompt) => {
   console.table(updatedDepartments);
 };
 
-// add role query function
+// add role function
 const addRole = async (executeQuery) => {
   // query for all department
   const departments = await executeQuery("SELECT * FROM department");
@@ -98,12 +98,37 @@ const addRole = async (executeQuery) => {
   // console.table(updatedRoles);
 };
 
-// add role query function
+// add employee function
 const addEmployee = async (executeQuery) => {
   // query for all roles
   const roles = await executeQuery("SELECT * FROM role");
+
+  // // declare an empty array for department
+  let rolesArray = [];
+
+  // // generate current department list
+  const rolesList = roles.forEach((role) => {
+    let roleObj = {};
+    roleObj.name = role.title;
+    roleObj.value = role.id;
+    rolesArray.push(roleObj);
+  });
+
   // query for all employees
   const employees = await executeQuery("SELECT * FROM employee");
+
+  // // declare an empty array for department
+  let employeesArray = [];
+
+  // generate current department list
+  const employeesList = employees.forEach((employee) => {
+    if (!employee.managerId) {
+      let employeeObj = {};
+      employeeObj.name = employee.firstName + " " + employee.lastName;
+      employeeObj.value = employee.id;
+      employeesArray.push(employeeObj);
+    }
+  });
 
   // add new employee questions
   const employeeQuestions = [
@@ -134,23 +159,26 @@ const addEmployee = async (executeQuery) => {
     {
       message: "Please select the role the employee belongs to",
       type: "list",
-      name: "role",
-      // SELECT * ALL ROLES IN DATABASE
-      choices: rolesList,
+      name: "roleId",
+      choices: rolesArray,
     },
     {
       message: "Please select the employee's manager",
       type: "list",
-      name: "manager",
-      // REFERENCE MANAGERS IN EMPLOYEE TABLES
-      choice: [],
+      name: "managerId",
+      choices: employeesArray,
     },
   ];
 
   // prompt add employee questions
-  const { firstName, lastName, role, manager } = await inquirer.prompt(
+  const { firstName, lastName, roleId, managerId } = await inquirer.prompt(
     employeeQuestions
   );
+
+  // add inputs into role database
+  const updatedEmployees =
+    await executeQuery(`INSERT INTO employee (firstName, lastName, roleId, managerId)
+   VAlUES ("${firstName}", "${lastName}", "${roleId}", "${managerId}"))`);
 };
 
 // add role query function

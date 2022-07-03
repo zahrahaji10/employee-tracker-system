@@ -71,6 +71,13 @@ const init = async () => {
 
         console.log("YOU HAVE ADDED A ROLE");
       }
+
+      // prompt add employee questions
+      if (action === "addEmployee") {
+        // prompt add employee questions
+        await addEmployee(executeQuery);
+        console.log("YOU HAVE ADDED AN EMPLOYEE");
+      }
     }
   } catch (error) {
     console.log(`[ERROR]: Internal error | ${error.message}`);
