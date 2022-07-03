@@ -176,9 +176,9 @@ const addEmployee = async (executeQuery) => {
   );
 
   // add inputs into role database
-  const updatedEmployees =
-    await executeQuery(`INSERT INTO employee (firstName, lastName, roleId, managerId)
-   VAlUES ("${firstName}", "${lastName}", "${roleId}", "${managerId}"))`);
+  const updatedEmployees = await executeQuery(
+    `INSERT INTO employee (firstName, lastName, roleId, managerId) VAlUES ("${firstName}", "${lastName}", "${roleId}", "${managerId}")`
+  );
 };
 
 // add role query function
