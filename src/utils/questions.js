@@ -1,6 +1,7 @@
 // import inquirer into file
 const inquirer = require("inquirer");
 
+const { executeQuery } = require("../utils/connection");
 // main choice questions prompted via inquirer
 const choiceQuestions = {
   message: "Please select from one of the following options",
@@ -32,10 +33,9 @@ const choiceQuestions = {
       name: "Add an employee",
       value: "addEmployee",
     },
-    ,
     {
       name: "Update an employee role",
-      value: "update",
+      value: "updateEmployee",
     },
     {
       name: "Quit application",
@@ -57,41 +57,6 @@ const departmentQuestions = {
     }
   },
 };
-
-// add new role questions
-const roleQuestions = [
-  {
-    message: "Please enter the title for the role",
-    type: "input",
-    name: "title",
-    validate: (enteredTitle) => {
-      if (enteredTitle) {
-        return true;
-      } else {
-        return "Please enter the role title to continue";
-      }
-    },
-  },
-  {
-    message: "Please enter the salary for this role",
-    type: "input",
-    name: "salary",
-    validate: (enteredSalary) => {
-      if (enteredSalary) {
-        return true;
-      } else {
-        return "Please enter the role salary to continue";
-      }
-    },
-  },
-  {
-    message: "Please select the department this role belongs to",
-    type: "list",
-    name: "selectDepartmentForRole",
-    // SELECT * DATA FROM DEPARTMENT TABLE
-    choices: [],
-  },
-];
 
 // add new employee questions
 const employeeQuestions = [
@@ -122,14 +87,14 @@ const employeeQuestions = [
   {
     message: "Please select the role the employee belongs to",
     type: "list",
-    name: "selectRoleForEmployee",
+    name: "role",
     // SELECT * ALL ROLES IN DATABASE
     choices: [],
   },
   {
     message: "Please select the employee's manager",
     type: "list",
-    name: "assignManagerForEmployee",
+    name: "manager",
     // REFERENCE MANAGERS IN EMPLOYEE TABLES
     choice: [],
   },
@@ -140,16 +105,14 @@ const updateQuestions = [
   {
     message: " Please select the employee you would like to update",
     type: "list",
-    name: "employeeToUpdate",
-    // SELECT * ALL EMPLOYEES FROM DATABASE
+    name: "UpdateDate",
     choices: [],
   },
   {
     message:
       " Please select the role you would like to update for the employee",
     type: "list",
-    name: "updateToRole",
-    // SELECT * ALL ROLES FROM DATABASE
+    name: "updateRole",
     choices: [],
   },
 ];
@@ -157,7 +120,6 @@ const updateQuestions = [
 module.exports = {
   choiceQuestions,
   departmentQuestions,
-  roleQuestions,
   employeeQuestions,
   updateQuestions,
 };

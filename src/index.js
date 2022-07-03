@@ -6,7 +6,6 @@ require("dotenv").config();
 const {
   choiceQuestions,
   departmentQuestions,
-  roleQuestions,
   employeeQuestions,
   updateQuestions,
 } = require("../src/utils/questions");
@@ -15,8 +14,10 @@ const {
   viewDepartments,
   viewRoles,
   viewEmployees,
-  addDepartment,
   addRole,
+  addDepartment,
+  addEmployee,
+  updateEmployee,
 } = require("../db/queries");
 
 // fn to prompt inquirer questions
@@ -39,31 +40,6 @@ const init = async () => {
       // prompt choice questions
       const { action } = await inquirer.prompt(choiceQuestions);
 
-      // prompt add department questions
-      if (action === "addDepartment") {
-        const departmentQPrompt = await inquirer.prompt(departmentQuestions);
-        await addDepartment(executeQuery, departmentQPrompt);
-
-        console.log("YOU HAVE ADDED A DEPARTMENT");
-      }
-
-      // prompt add role questions
-      if (action === "addRole") {
-        await addRole(executeQuery, roleQuestions);
-        console.log("YOU HAVE ADDED A ROLE");
-      }
-
-      // prompt add employee questions
-      if (action === "addEmployee") {
-        const {
-          addEmployeeName,
-          ddEmployeeName,
-          selectRoleForEmployee,
-          assignManagerForEmployee,
-        } = await inquirer.prompt(employeeQuestions);
-        console.log("YOU HAVE ADDED AN EMPLOYEE");
-      }
-
       // prompt view departments
       if (action === "viewDepartments") {
         await viewDepartments(executeQuery);
@@ -82,22 +58,18 @@ const init = async () => {
         console.log("CURRENT EMPLOYEES");
       }
 
-      // prompt update questions
-      if (action === "update") {
-        const { employeeToUpdate, updateToRole } = await inquirer.prompt(
-          Questions
-        );
-        // execute query for update selected employee role
-        console.log("CURRENT EMPLOYEES");
+      // prompt add department questions
+      if (action === "addDepartment") {
+        const departmentQPrompt = await inquirer.prompt(departmentQuestions);
+        await addDepartment(executeQuery, departmentQPrompt);
+        console.log("YOU HAVE ADDED A DEPARTMENT");
       }
 
-      // end looping of questions
-      if (action === "quit") {
-        // close connection to quit application
-        await closeConnection();
-        // set inProgress false to quit questions looping
-        inProgress = false;
-        console.log("YOU HAVE CHOSEN TO QUIT APPLICATION");
+      // prompt add role questions
+      if (action === "addRole") {
+        await addRole(executeQuery);
+
+        console.log("YOU HAVE ADDED A ROLE");
       }
     }
   } catch (error) {
