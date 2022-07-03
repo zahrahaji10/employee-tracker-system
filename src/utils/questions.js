@@ -58,68 +58,7 @@ const departmentQuestions = {
   },
 };
 
-// add new employee questions
-const employeeQuestions = [
-  {
-    message: "Please enter employee first name",
-    type: "input",
-    name: "firstName",
-    validate: (enteredName) => {
-      if (enteredName) {
-        return true;
-      } else {
-        return "Please enter the employee first name to continue";
-      }
-    },
-  },
-  {
-    message: "Please enter employee last name",
-    type: "input",
-    name: "lastName",
-    validate: (enteredName) => {
-      if (enteredName) {
-        return true;
-      } else {
-        return "Please enter the employee last name to continue";
-      }
-    },
-  },
-  {
-    message: "Please select the role the employee belongs to",
-    type: "list",
-    name: "role",
-    // SELECT * ALL ROLES IN DATABASE
-    choices: [],
-  },
-  {
-    message: "Please select the employee's manager",
-    type: "list",
-    name: "manager",
-    // REFERENCE MANAGERS IN EMPLOYEE TABLES
-    choice: [],
-  },
-];
-
-// update an employee questions
-const updateQuestions = [
-  {
-    message: " Please select the employee you would like to update",
-    type: "list",
-    name: "UpdateDate",
-    choices: [],
-  },
-  {
-    message:
-      " Please select the role you would like to update for the employee",
-    type: "list",
-    name: "updateRole",
-    choices: [],
-  },
-];
-
 module.exports = {
   choiceQuestions,
   departmentQuestions,
-  employeeQuestions,
-  updateQuestions,
 };

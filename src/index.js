@@ -78,6 +78,12 @@ const init = async () => {
         await addEmployee(executeQuery);
         console.log("YOU HAVE ADDED AN EMPLOYEE");
       }
+
+      // prompt update questions
+      if (action === "updateEmployee") {
+        await updateEmployee(executeQuery);
+        console.log("CURRENT EMPLOYEES");
+      }
     }
   } catch (error) {
     console.log(`[ERROR]: Internal error | ${error.message}`);

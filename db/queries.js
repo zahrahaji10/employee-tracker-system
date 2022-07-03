@@ -181,16 +181,60 @@ const addEmployee = async (executeQuery) => {
   );
 };
 
-// add role query function
+// update employee questions
 const updateEmployee = async (executeQuery) => {
   // query for all roles
   const roles = await executeQuery("SELECT * FROM role");
 
+  // // declare an empty array for department
+  let rolesArray = [];
+
+  // // generate current department list
+  const rolesList = roles.forEach((role) => {
+    let roleObj = {};
+    roleObj.name = role.title;
+    roleObj.value = role.id;
+    rolesArray.push(roleObj);
+  });
+
   // query for all employees
   const employees = await executeQuery("SELECT * FROM employee");
 
+  // declare an empty array for department
+  let employeesArray = [];
+
+  // generate current department list
+  const employeesList = employees.forEach((employee) => {
+    let employeeObj = {};
+    employeeObj.name = employee.firstName + " " + employee.lastName;
+    employeeObj.value = employee.id;
+    employeesArray.push(employeeObj);
+  });
+
+  // prompt update questions
+  const updateQuestions = [
+    {
+      message: " Please select the employee you would like to update",
+      type: "list",
+      name: "employee",
+      choices: employeesArray,
+    },
+    {
+      message:
+        " Please select the role you would like to update for the employee",
+      type: "list",
+      name: "role",
+      choices: rolesArray,
+    },
+  ];
+
   // prompt add employee questions
-  const updateEmployeeQuestions = await inquirer.prompt(updateQuestions);
+  const { employee, role } = await inquirer.prompt(updateQuestions);
+
+  // add inputs into role database
+  const updatedEmployees = await executeQuery(
+    ` UPDATE employee SET roleId = "${role}" WHERE (id = '"${employee}"')`
+  );
 };
 
 module.exports = {
