@@ -233,7 +233,7 @@ const updateEmployee = async (executeQuery) => {
 
   // add inputs into role database
   const updatedEmployees = await executeQuery(
-    ` UPDATE employee SET roleId = "${role}" WHERE (id = '"${employee}"')`
+    `UPDATE employee SET roleId = '${role}' WHERE (id = '${employee}')`
   );
 };
 
