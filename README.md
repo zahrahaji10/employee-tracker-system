@@ -13,7 +13,7 @@
 
 ## Description
 
-Using Node.js, Inquirer, and MySQL to create an application to manage a company's employee database.
+Creating an application using Node.js, Inquirer, and MySQL to manage and organise the departments, roles and employees in a company's database.
 
 ## Installation
 
@@ -35,7 +35,7 @@ nmp run dev
 ```
 mysql -u root -p
 source schema.sql
-source seed.sql
+source seeds.sql
 ```
 
 ## Node Dependencies Packages
@@ -45,9 +45,9 @@ source seed.sql
 - [Mysql2](https://www.npmjs.com/package/mysql2)
 - [Console.table](https://www.npmjs.com/package/console.table)
 
-### DevDependencies package
+#### DevDependencies package
 
-[Nodemon](https://www.npmjs.com/package/nodemon)
+- [Nodemon](https://www.npmjs.com/package/nodemon)
 
 ## Application Diagram
 
