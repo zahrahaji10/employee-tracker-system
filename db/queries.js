@@ -1,13 +1,65 @@
 // external imports
 const mysql = require("mysql2/promise");
-const { executeQuery } = require("../src/utils/connection");
 const inquirer = require("inquirer");
-const {
-  choiceQuestions,
-  departmentQuestions,
-  employeeQuestions,
-  updateQuestions,
-} = require("../src/utils/questions");
+
+// internal imports
+const { executeQuery } = require("../src/utils/connection");
+
+// main choices inquirer questions
+const choiceQuestions = {
+  message: "Please select from one of the following options",
+  type: "list",
+  name: "action",
+  choices: [
+    {
+      name: "View all departments",
+      value: "viewDepartments",
+    },
+    {
+      name: "View all roles",
+      value: "viewRoles",
+    },
+    {
+      name: "View all employees",
+      value: "viewEmployees",
+    },
+    {
+      name: "Add a department",
+      value: "addDepartment",
+    },
+    ,
+    {
+      name: "Add a role",
+      value: "addRole",
+    },
+    {
+      name: "Add an employee",
+      value: "addEmployee",
+    },
+    {
+      name: "Update an employee role",
+      value: "updateEmployee",
+    },
+    {
+      name: "Quit application",
+      value: "quit",
+    },
+  ],
+};
+
+// add new department questions
+const departmentQuestions = {
+  message: "Please enter a department name",
+  type: "input",
+  name: "departmentName",
+  validate: (enteredDepartmentName) => {
+    if (enteredDepartmentName) {
+      return true;
+    } else {
+      return "Please enter a department name to continue";
+    }
+  },
+};
 
 // view department query function
 const viewDepartments = async (executeQuery) => {
@@ -233,7 +285,7 @@ const updateEmployee = async (executeQuery) => {
 
   // add inputs into role database
   const updatedEmployees = await executeQuery(
-    `UPDATE employee SET roleId = '${role}' WHERE (id = '${employee}')`
+    ` UPDATE employee SET roleId = '${role}' WHERE (id = '${employee}')`
   );
 };
 
@@ -245,4 +297,6 @@ module.exports = {
   addEmployee,
   updateEmployee,
   addDepartment,
+  choiceQuestions,
+  departmentQuestions,
 };

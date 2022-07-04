@@ -3,12 +3,7 @@ const inquirer = require("inquirer");
 require("dotenv").config();
 
 //  internal - import questions into file
-const {
-  choiceQuestions,
-  departmentQuestions,
-  employeeQuestions,
-  updateQuestions,
-} = require("../src/utils/questions");
+
 const initDatabase = require("../src/utils/connection");
 const {
   viewDepartments,
@@ -18,6 +13,8 @@ const {
   addDepartment,
   addEmployee,
   updateEmployee,
+  choiceQuestions,
+  departmentQuestions,
 } = require("../db/queries");
 
 // fn to prompt inquirer questions
@@ -68,7 +65,6 @@ const init = async () => {
       // prompt add role questions
       if (action === "addRole") {
         await addRole(executeQuery);
-
         console.log("YOU HAVE ADDED A ROLE");
       }
 

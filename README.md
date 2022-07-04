@@ -5,6 +5,7 @@
 - [Description](#description)
 - [Installation](#installation)
 - [Launch Server](#Launch-server)
+- [Database setup](#Database-setup)
 - [Node Packages](#node-packages)
 - [Application Diagram](#application-diagram)
 - [Video Demonstration](#video-demonstration)
@@ -29,12 +30,28 @@ nmp run start
 nmp run dev
 ```
 
-## Node Packages
+## Database set-up
+
+```
+mysql -u root -p
+source schema.sql
+source seed.sql
+```
+
+## Node Dependencies Packages
 
 - [Inquirer](https://www.npmjs.com/package/inquirer)
-- [Nodemon](https://www.npmjs.com/package/nodemon)
+- [Dotenv](https://www.npmjs.com/package/dotenv)
+- [Mysql2](https://www.npmjs.com/package/mysql2)
+- [Console.table](https://www.npmjs.com/package/console.table)
+
+### DevDependencies package
+
+[Nodemon](https://www.npmjs.com/package/nodemon)
 
 ## Application Diagram
+
+<img width="948" alt="12-sql-homework-demo-01" src="https://user-images.githubusercontent.com/102627226/177121811-97bfccf2-448b-431d-ade9-c332d5055cf7.png">
 
 ## Video Demonstration
 
