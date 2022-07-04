@@ -27,7 +27,6 @@ const choiceQuestions = {
       name: "Add a department",
       value: "addDepartment",
     },
-    ,
     {
       name: "Add a role",
       value: "addRole",
@@ -61,31 +60,65 @@ const departmentQuestions = {
   },
 };
 
+// generate choices function
+const generateChoices = (arr, key) => {
+  return arr.map((each) => {
+    return { name: each[key], value: each.id };
+  });
+};
+
+// generate employee choices function
+const generateEmployeesChoices = (employees) => {
+  const employeeArray = [];
+  employees.forEach((employee) => {
+    if (!employee.managerId) {
+      employeeArray.push({
+        name: employee.firstName + " " + employee.lastName,
+        value: employee.id,
+      });
+    }
+  });
+  return employeeArray;
+};
+
 // view department query function
 const viewDepartments = async (executeQuery) => {
+  // declare a variable that stores the query results
   const departments = await executeQuery("SELECT * FROM department");
+
+  // display table
   console.table(departments);
 };
 
 // view role query function
 const viewRoles = async (executeQuery) => {
+  // declare a variable that stores the query results
   const roles = await executeQuery("SELECT * FROM role");
 
+  // display table
   console.table(roles);
 };
 
 // view employee query function
 const viewEmployees = async (executeQuery) => {
+  // declare a variable that stores the query results
   const employees = await executeQuery("SELECT * FROM employee");
+
+  // display table
   console.table(employees);
 };
 
 // add department query function
 const addDepartment = async (executeQuery, departmentQPrompt) => {
+  // declare a variable that stores the query results and inquirer answers
   const newDepartment = await executeQuery(
     `INSERT INTO department (name) VALUES ("${departmentQPrompt.departmentName}")`
   );
+
+  //  // declare a variable that stores the query results
   const updatedDepartments = await executeQuery("SELECT * FROM department");
+
+  // display table
   console.table(updatedDepartments);
 };
 
@@ -94,16 +127,8 @@ const addRole = async (executeQuery) => {
   // query for all department
   const departments = await executeQuery("SELECT * FROM department");
 
-  // declare an empty array for department
-  let departmentsArray = [];
-
-  // generate current department list
-  const departmentList = departments.forEach((department) => {
-    let departmentObj = {};
-    departmentObj.name = department.name;
-    departmentObj.value = department.id;
-    departmentsArray.push(departmentObj);
-  });
+  // generate current department choices and pass in array and key as name
+  const departmentList = generateChoices(departments, "name");
 
   // declare inquirer new role questions
   const roleQuestions = [
@@ -135,7 +160,7 @@ const addRole = async (executeQuery) => {
       message: "Please select the department this role belongs to",
       type: "list",
       name: "departmentId",
-      choices: departmentsArray,
+      choices: departmentList,
     },
   ];
 
@@ -155,32 +180,14 @@ const addEmployee = async (executeQuery) => {
   // query for all roles
   const roles = await executeQuery("SELECT * FROM role");
 
-  // // declare an empty array for department
-  let rolesArray = [];
-
-  // // generate current department list
-  const rolesList = roles.forEach((role) => {
-    let roleObj = {};
-    roleObj.name = role.title;
-    roleObj.value = role.id;
-    rolesArray.push(roleObj);
-  });
+  // generate current department choices and pass in array and key as name
+  const rolesList = generateChoices(roles, "title");
 
   // query for all employees
   const employees = await executeQuery("SELECT * FROM employee");
 
-  // // declare an empty array for department
-  let employeesArray = [];
-
   // generate current department list
-  const employeesList = employees.forEach((employee) => {
-    if (!employee.managerId) {
-      let employeeObj = {};
-      employeeObj.name = employee.firstName + " " + employee.lastName;
-      employeeObj.value = employee.id;
-      employeesArray.push(employeeObj);
-    }
-  });
+  const employeesList = generateEmployeesChoices(employees);
 
   // add new employee questions
   const employeeQuestions = [
@@ -212,13 +219,13 @@ const addEmployee = async (executeQuery) => {
       message: "Please select the role the employee belongs to",
       type: "list",
       name: "roleId",
-      choices: rolesArray,
+      choices: rolesList,
     },
     {
       message: "Please select the employee's manager",
       type: "list",
       name: "managerId",
-      choices: employeesArray,
+      choices: employeesList,
     },
   ];
 
@@ -238,30 +245,14 @@ const updateEmployee = async (executeQuery) => {
   // query for all roles
   const roles = await executeQuery("SELECT * FROM role");
 
-  // // declare an empty array for department
-  let rolesArray = [];
-
-  // // generate current department list
-  const rolesList = roles.forEach((role) => {
-    let roleObj = {};
-    roleObj.name = role.title;
-    roleObj.value = role.id;
-    rolesArray.push(roleObj);
-  });
+  // generate current department choices and pass in array and key as name
+  const rolesList = generateChoices(roles, "title");
 
   // query for all employees
   const employees = await executeQuery("SELECT * FROM employee");
 
-  // declare an empty array for department
-  let employeesArray = [];
-
   // generate current department list
-  const employeesList = employees.forEach((employee) => {
-    let employeeObj = {};
-    employeeObj.name = employee.firstName + " " + employee.lastName;
-    employeeObj.value = employee.id;
-    employeesArray.push(employeeObj);
-  });
+  const employeesList = generateEmployeesChoices(employees);
 
   // prompt update questions
   const updateQuestions = [
@@ -269,14 +260,14 @@ const updateEmployee = async (executeQuery) => {
       message: " Please select the employee you would like to update",
       type: "list",
       name: "employee",
-      choices: employeesArray,
+      choices: employeesList,
     },
     {
       message:
         " Please select the role you would like to update for the employee",
       type: "list",
       name: "role",
-      choices: rolesArray,
+      choices: rolesList,
     },
   ];
 

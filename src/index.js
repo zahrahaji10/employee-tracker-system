@@ -80,6 +80,14 @@ const init = async () => {
         await updateEmployee(executeQuery);
         console.log("CURRENT EMPLOYEES");
       }
+
+      // end looping of questions
+      if (action === "quit") {
+        // set inProgress false to quit questions looping
+        inProgress = false;
+        await closeConnection();
+        console.log("YOU HAVE CHOSEN TO QUIT APPLICATION");
+      }
     }
   } catch (error) {
     console.log(`[ERROR]: Internal error | ${error.message}`);
