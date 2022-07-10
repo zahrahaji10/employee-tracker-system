@@ -40,7 +40,7 @@ const choiceQuestions = {
       value: "updateEmployee",
     },
     {
-      name: "Quit application",
+      name: "Quit Application",
       value: "quit",
     },
   ],
@@ -186,8 +186,18 @@ const addEmployee = async (executeQuery) => {
   // query for all employees
   const employees = await executeQuery("SELECT * FROM employee");
 
-  // generate current department list
-  const employeesList = generateEmployeesChoices(employees);
+  // // declare an empty array for employees
+  let employeesArray = [];
+
+  // generate employee list
+  const employeesList = employees.forEach((employee) => {
+    if (!employee.managerId) {
+      let employeeObj = {};
+      employeeObj.name = employee.firstName + " " + employee.lastName;
+      employeeObj.value = employee.id;
+      employeesArray.push(employeeObj);
+    }
+  });
 
   // add new employee questions
   const employeeQuestions = [
@@ -225,7 +235,7 @@ const addEmployee = async (executeQuery) => {
       message: "Please select the employee's manager",
       type: "list",
       name: "managerId",
-      choices: employeesList,
+      choices: employeesArray,
     },
   ];
 
@@ -251,8 +261,16 @@ const updateEmployee = async (executeQuery) => {
   // query for all employees
   const employees = await executeQuery("SELECT * FROM employee");
 
+  // declare an empty array for department
+  let employeesArray = [];
+
   // generate current department list
-  const employeesList = generateEmployeesChoices(employees);
+  const employeesList = employees.forEach((employee) => {
+    let employeeObj = {};
+    employeeObj.name = employee.firstName + " " + employee.lastName;
+    employeeObj.value = employee.id;
+    employeesArray.push(employeeObj);
+  });
 
   // prompt update questions
   const updateQuestions = [
@@ -260,7 +278,7 @@ const updateEmployee = async (executeQuery) => {
       message: " Please select the employee you would like to update",
       type: "list",
       name: "employee",
-      choices: employeesList,
+      choices: employeesArray,
     },
     {
       message:
