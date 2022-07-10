@@ -17,20 +17,20 @@ VAlUES ('Senior Developer', 56000.00, 3),
 ('Product Engineer', 68000.00,4),
 ('Sales Assistant ', 32000.00, 5),
 ('Marketing Officer', 71000.00, 2),
-('Product Designer', 68000.00, 4);
+('Product Designer', 45000.00, 4);
 
 
 INSERT INTO employee (firstName, lastName, roleId, managerId)
-VAlUES ('Sam', 'Smith', 3 , NULL),
-('Sarah', 'Lee', 1 , NULL ),
-('John', 'Holland',2, NULL ),
-('Emma', 'Green',5, NULL ),
-('Rob', 'Gray', 4, NULL ),
-('Steven','Andrews', 4, NULL ),
-('Emaily', 'Charl', 1 , NULL),
-('Luke', 'Ross', 3, NULL),
-('Liam', 'Tim', 2, NULL ),
-('Alice', 'White', 5,NULL);
+VAlUES ('Sam', 'Smith', 1 , NULL),
+('Sarah', 'Lee', 3 , NULL ),
+('John', 'Holland',9, NULL ),
+('Emma', 'Green',6, NULL ),
+('Rob', 'Gray', 7, NULL ),
+('Steven','Andrews', 10, NULL ),
+('Emaily', 'Charl', 5 , NULL),
+('Luke', 'Ross',2, NULL),
+('Liam', 'Tim', 4, NULL ),
+('Alice', 'White', 8,NULL);
 
 UPDATE employee SET managerId = '5' WHERE (id = '6');
 UPDATE employee SET managerId = '2' WHERE (id = '7');
